@@ -10,9 +10,7 @@ router.get('/user/:id',async(ctx)=>{
         ctx.body=user;
     }else{
         ctx.body='未查询到相应用户'
-    }
-    
-
+    }    
 })
 
 //查询用户列表
@@ -45,13 +43,13 @@ router.patch('/user',async(ctx)=>{
 router.put('/user',async(ctx)=>{
     var userJson=ctx.request.body;    
     //save user
-    const user=await userService.saveUser(userJson);
-    if(user!=null){
-        ctx.body='注册成功';
+    try{
+        const user=await userService.saveUser(userJson);
+        ctx.body='ok';
         console.log('Insert user,id='+user.userId+'name='+user.name+',password='+user.password);
-    }else{
+    }catch(err){
         ctx.body='注册失败，可能原因：用户名重复';
-        console.log('注册失败');
+        console.log('注册失败，err：'+err);
     }    
 })
 

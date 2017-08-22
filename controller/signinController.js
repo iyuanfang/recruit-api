@@ -17,11 +17,9 @@ router.post('/signin',async(ctx)=>{
     console.log(`signin with name:${name},password:${password}`);
     var user=await userService.getUser({name:name,password:password});
     if (user) {
-        ctx.response.body = `<h1>Welcome, ${user.name}!</h1>`;
+        ctx.response.body = 'ok';
     } else {
-        ctx.response.body = `<h1>Login failed!</h1>
-        <p><a href="/signin">重新登录</a></p>
-        <p><a href="/user">注册</a></p>`;
+        ctx.response.body = 'failed';
     }
 });
 
