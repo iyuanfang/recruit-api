@@ -9,6 +9,8 @@ const companySchema= new Schema({
     companyId:Number,
     cityId:Number,
     address:String,
+    city:String,
+    area:String,
     numEmployee:Number,
     industry:String,
     brief:String,
