@@ -61,57 +61,5 @@ router.put('/position',async(ctx)=>{
     }
 })
     
-//职位表单
-router.get('/position',async(ctx) =>{
-    ctx.response.body = `<h1>Position</h1>
-        <form action="/position/save" method="post">
-            <input type="hidden" name="positionrId" value="1">
-            <input type="hidden" name="companyId" value="1">
-            <p>职位名称: <input name="name" placeholder="请输入"></p>
-            <p>职位薪资: <input name="salary"></p>
 
-            <p>薪资类型: <select name="salaryType">
-            <option value=0>日薪</option>
-            <option value=1>月薪</option>
-            </select></p>
-            
-            <p>学历要求: <select name="degree">
-            <option value=0>初中</option>
-            <option value=1>高中</option>
-            <option value=2>大专</option>
-            <option value=3>本科</option>
-            <option value=4>研究生</option>
-            <option value=5>博士</option>
-            </select></p>
-
-            <p>招聘人数: <input name="recruitNum"></p>
-            <p>工作地址: <input name="address"></p>
-            <p>工作周期: <select name="workCycle">
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            </select>天/周</p>
-            <p>工作时长: <select name="workCycle">
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            </select>个月</p>
-            <p>职位描述: <input name="jobDescription"></p>
-            <p>行业：<input name="profession"></p>
-            <p><input type="submit" value="发布职位"></p>
-        </form>`;
-});
-
-router.get('/',async(ctx)=>{
-    ctx.body='index';
-
-});
 module.exports=router.routes();
