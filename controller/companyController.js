@@ -7,7 +7,7 @@ router.get('/company/:id',async(ctx)=>{
     var id= parseInt(ctx.params.id);  // 改为int型Id;
     //var id= ctx.params.id; 
     var company=await companyService.getCompany({companyId:id}); 
-    ctx.body=company;
+    ctx.response.body=company;
     console.log('Process company');
 
 });
@@ -15,7 +15,7 @@ router.get('/company/:id',async(ctx)=>{
 //查询用户公司
 router.get( '/companys',async(ctx)=>{
     companys=await companyService.getCompanys({}); 
-    ctx.body=companys;
+    ctx.response.body=companys;
     console.log('Process companys');
 }  )
 
