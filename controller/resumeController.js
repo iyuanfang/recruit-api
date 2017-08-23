@@ -1,15 +1,29 @@
 const router=require('koa-router')();
 const resumeService=require('../service/resumeService');
+const eduExpService=require('../service/eduExpService');
+const workExpService=require('../service/workExpService');
 
 //查询单个简历
 router.get('/resume/:id',async(ctx)=>{
     var id=parseInt(ctx.params.id);
-    console.log('query resume id:'+id);
+    // console.log('query resume id:'+id);
+
+    
+
     var resume=await resumeService.getResume({resumeId:id});
-    ctx.body=resume;
+    // console.log('query resume id:'+resume);  // resume是json对象
+    var eduExp=await eduExpService.getEduExp({resumeId:id});
+    var workExp=await workExpService.getWorkExp({resumeId:id});
+    
+    //var conbination = resume.eduExp+workExp;
+
+    ctx.body=conbination;
+
     console.log('Process resume');
 
 });
+
+
 
 //查询简历列表
 router.get('/resumes',async(ctx)=>{
@@ -43,7 +57,8 @@ router.put('/resume',async(ctx)=>{
     const resume=await resumeService.saveResume(resumeJson);
     if(resume!=null){
         ctx.body='创建简历成功';
-        console.log('Insert resume,id='+resume.resumeId+',degree='+resume.degree+',phone='+resume.phone);
+        console.log('Insert resume,  id='+resume.resumeId+',degree='+resume.name+',phone='+resume.sex
+        +',degree='+resume.birthday+',phone='+resume.phone);
     }else{
         ctx.body='注册失败，可能原因：简历名重复';
         console.log('注册失败');
