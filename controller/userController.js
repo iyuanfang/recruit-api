@@ -53,22 +53,5 @@ router.put('/user',async(ctx)=>{
     }    
 })
 
-//用户表单
-router.get('/user',async(ctx) =>{
-    ctx.response.body = `<h1>User</h1>
-        <form action="/user/save" method="post">
-            <input type="hidden" name="userId" value="1">
-            <p>Name: <input name="name" value="koa"></p>
-            <p>Password: <input name="password" type="password"></p>
-            <p><input type="submit" value="Submit"></p>
-        </form>`;
-});
-
-router.get('/',async(ctx)=>{
-
-    ctx.body='index';
-
-});
-
 module.exports=router.routes();
 

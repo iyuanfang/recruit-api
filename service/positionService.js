@@ -10,6 +10,10 @@ exports.getPositions=function(query){
     return Position.find(query).exec();
 }
 
+exports.getHomePostions=function(query){
+    return Position.find(query).exec();
+}
+
 exports.deletePosition=function(positionId){
     console.log("delete position id:"+positionId);
     return Position.remove({positionId:positionId});
