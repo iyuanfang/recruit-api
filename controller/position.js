@@ -24,7 +24,12 @@ router.get('/positions',async(ctx)=>{
     ctx.body=positions;
     console.log('Process positions');
 })
-
+//查询首页职位列表
+router.get('/positions',async(ctx)=>{
+    positions=await positionService.getHomePostions({});
+    ctx.body=positions;
+    console.log('Process homepositions');
+})
 //删除职位
 router.delete('/position/:id',async(ctx)=>{
     var id=parseInt(ctx.params.id);
@@ -39,17 +44,17 @@ router.patch('/position',async(ctx)=>{
     //update position
     const position=await positionService.updatePosition(positionJson);
     ctx.body='更新成功';
-    console.log('Insert position,id='+position.positionId+'name='+position.name+',salary='+position.salary+',salaryType='+position.salaryType+',degree='+position.degree+',recruitNum='+position.recruitNum+',address='+position.address+',workCycle='+position.workCycle+',workTime='+position.workTime+',jobDescription='+position.jobDescription);
+    console.log('Insert position,id='+position.positionId+'name='+position.name+',salary='+position.salary+',salaryType='+position.salaryType+',degree='+position.degree+',recruitNum='+position.recruitNum+',address='+position.address+',workCycle='+position.workCycle+',jobDescription='+position.jobDescription+',profession='+position.profession);
 })
 
 //创建职位
 router.put('/position',async(ctx)=>{
-    var positionJson=ctx.request.body;    
+    var positionJson=ctx.request.body;
     //save position
     const position=await positionService.savePosition(positionJson);
     if(position!=null){
         ctx.body='注册成功';
-        console.log('Insert position,id='+position.positionId+'name='+position.name+',salary='+position.salary+',salaryType='+position.salaryType+',degree='+position.degree+',recruitNum='+position.recruitNum+',address='+position.address+',workCycle='+position.workCycle+',workTime='+position.workTime+',jobDescription='+position.jobDescription);
+        console.log('Insert position,id='+position.positionId+'name='+position.name+',salary='+position.salary+',salaryType='+position.salaryType+',degree='+position.degree+',recruitNum='+position.recruitNum+',address='+position.address+',workCycle='+position.workCycle+',workTime='+position.workTime+',jobDescription='+position.jobDescription+',profession='+position.profession);
     }else{
         ctx.body='注册失败，可能原因：用户名重复';
         console.log('注册失败');
@@ -100,6 +105,7 @@ router.get('/position',async(ctx) =>{
             <option value=7>7</option>
             </select>个月</p>
             <p>职位描述: <input name="jobDescription"></p>
+            <p>行业：<input name="profession"></p>
             <p><input type="submit" value="发布职位"></p>
         </form>`;
 });
