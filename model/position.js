@@ -14,7 +14,7 @@ const PositionSchema=Schema({
     workTime:{type:Number},               //工作时长
     jobDescription:{type:String},         //职位描述
     profession:{type:String},             //所在行业
-    createDate:{type:String},
+    createDate:{type:String},             //创建时间
 });
 const Position=mongoose.model('position',PositionSchema,'position');
 module.exports=Position;

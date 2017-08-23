@@ -5,7 +5,6 @@ const Schema=mongoose.Schema;
 const userSchema=new Schema({
     userId:{type: Number, index: {unique: true}},
     name:{type: String, index: {unique: true}},
-    height:Number,
     password:String
 });
 
