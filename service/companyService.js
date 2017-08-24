@@ -16,8 +16,6 @@ exports.getCompanys=function(query){
 }
 
 
-
-
 /*
 exports.deleteCompany=function(companyId){
     console.log("delete company id:"+companyId);
