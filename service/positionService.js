@@ -1,13 +1,12 @@
 const Position=require('../model/position');
+const mongoose=require('mongoose');
 
 exports.getPosition=function(query){
-    var position=Position.findOne(query);
-    console.log('get position:'+position);
-    return position;
+    return Position.findOne(query).populate('company');
 }
 
 exports.getPositions=function(query){
-    return Position.find(query).exec();
+    return Position.find(query).populate('company');
 }
 
 exports.getHomePostions=function(query){
@@ -16,21 +15,17 @@ exports.getHomePostions=function(query){
 
 exports.deletePosition=function(positionId){
     console.log("delete position id:"+positionId);
-    return Position.remove({positionId:positionId});
+    return Position.remove({_id:positionId});
 }
 
 exports.savePosition=function(position){
+    var company=new mongoose.Types.ObjectId(position.company);
+    position.company=company;
     console.log("save position:"+JSON.stringify(position));
-    try{
-        var position=new Position(position).save();
-        return position;
-    }catch(err){
-        console.log('err:'+err);
-        return null;
-    }
+    return new Position(position).save();
 }
 
 exports.updatePosition=function(position){
     console.log("update position:"+JSON.stringify(position));
-    return Position.where({positionId:position.positionId}).update(position);
+    return Position.where({_id:position.positionId}).update(position);
 }

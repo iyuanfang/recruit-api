@@ -2,10 +2,10 @@ const mongoose=require('../common/mongoose');
 
 const Schema=mongoose.Schema;
 const PositionSchema=Schema({
-    positionId:{type:Number},             //职位Id
-    companyId: {type:Number},             //公司Id
+    company: {type:Schema.Types.ObjectId, ref:'company'},             //公司Id
     name: {type:String},                  //职位名称
-    salary:{type:Number},                 //薪资
+    minSalary:{type:Number},                 //最低薪资
+    maxSalary:{type:Number},                 //最高薪资    
     salaryType:{type:Number},             //薪资类型 0日，1月
     degree:{type:Number},                 //学历 0初中，1高中，2大专，3本科，4研究生，5博士
     recruitNum:{type:Number},             //招聘人数
