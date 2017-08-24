@@ -9,6 +9,10 @@ exports.getCompany=function(query){
     return company;
 }
 
+exports.saveCompany=function(company){
+    console.log("save company:"+JSON.stringify(company));
+    return new Company(company).save();
+}
 
 exports.getCompanys=function(query){
     //return Company.find(query).exec();  

@@ -3,11 +3,12 @@ const mongoose=require('../common/mongoose');
 const Schema=mongoose.Schema;
 
 const resumeSchema=new Schema({
-    resumeId:{type: Number, unique: true},
-    degree:{type:Number}, //0初中，1高中，2大专，3本科，4研究生，5博士
-    userId:{type:Number},
+    resumeId:{type: Number},
+    name:{type:String},
+    sex:{type:Number}, //0男，1女
+    birthday:{type:String},
     phone:String,
-    sex:{type:Number} //0男，1女
+   
 });
 
 //第三个参数才是指定创建的表名
