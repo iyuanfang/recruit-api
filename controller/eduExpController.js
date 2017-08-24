@@ -3,9 +3,9 @@ const eduExpService=require('../service/eduExpService');
 
 //查询单人教育经历
 router.get('/eduExp/:id',async(ctx)=>{
-    var id=parseInt(ctx.params.id);
+    var id=parseInt(ctx.params.id); // parseInt强制类型转换
     console.log('query resumeId:'+id);
-    var eduExp=await eduExpService.getEduExp({resumeId:id});
+    var eduExp=await eduExpService.getEduExps({resumeId:id}); // 使用getEduExps()方法，因为单人可以有多个教育经历
     ctx.body=eduExp;
     console.log('Process eduExp');
 
@@ -29,11 +29,12 @@ router.delete('/eduExp/:id',async(ctx)=>{
 
 //更新教育经历
 router.patch('/eduExp',async(ctx)=>{    
-    var eduExpJson=ctx.request.body;    
+    var eduExpJson=ctx.request.body;        
     //update eduExp
     const eduExp=await eduExpService.updateEduExp(eduExpJson);
     ctx.body='更新成功';
-    console.log('Update eduExp,   id='+eduExp.resumeId+',degree='+eduExp.degree+',phone='+eduExp.phone);
+    console.log('Update eduExp,   resumeId='+eduExp.resumeId+',school='+eduExp.school+',major='+eduExp.major
+    +',degree='+eduExp.degree+',beginTime='+eduExp.beginTime+',graduateTime='+eduExp.graduateTime+',achievement='+eduExp.achievement);
 })
 
 ////创建教育经历

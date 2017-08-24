@@ -8,16 +8,21 @@ router.get('/resume/:id',async(ctx)=>{
     var id=parseInt(ctx.params.id);
     // console.log('query resume id:'+id);
 
-    
+    var json={resume:'',eduExps:[],workExps:[]};  // 
 
     var resume=await resumeService.getResume({resumeId:id});
     // console.log('query resume id:'+resume);  // resume是json对象
-    var eduExp=await eduExpService.getEduExp({resumeId:id});
-    var workExp=await workExpService.getWorkExp({resumeId:id});
-    
-    //var conbination = resume.eduExp+workExp;
+    var eduExps=await eduExpService.getEduExps({resumeId:id}); //一个人（一个id）可以对应多份简历 getEduExps ； 
+    console.log('edus:'+eduExps);
+    var workExps=await workExpService.getWorkExps({resumeId:id});
 
-    ctx.body=conbination;
+    json.resume=resume;
+    json.eduExps=eduExps;
+    json.workExps=workExps;  // 将上述三个对象转成json对象
+
+    console.log('resume:'+json);
+
+    ctx.body=json;
 
     console.log('Process resume');
 

@@ -5,7 +5,7 @@ const workExpService=require('../service/workExpService');
 router.get('/workExp/:id',async(ctx)=>{
     var id=parseInt(ctx.params.id);
     console.log('query resumeId:'+id);
-    var workExp=await workExpService.getWorkExp({resumeId:id});
+    var workExp=await workExpService.getWorkExps({resumeId:id}); // 使用getWorkExps()方法
     ctx.body=workExp;
     console.log('Process workExp');
 

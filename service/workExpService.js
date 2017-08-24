@@ -1,12 +1,12 @@
 const WorkExp=require('../model/workExp');
 
 exports.getWorkExp=function(query){
-    var workExp=WorkExp.findOne(query);
+    var workExp=WorkExp.findOne(query);  // findone()函数
     console.log('get resume id:'+workExp.resumeId);
     return workExp;
 }
 
-exports.getWorkExps=function(query){
+exports.getWorkExps=function(query){    //使用的find()函数
     return WorkExp.find(query);
 }
 
