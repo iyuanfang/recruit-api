@@ -4,8 +4,8 @@ const Schema=mongoose.Schema;
 
 const applySchema=new Schema({
     applyId:{type: Number, unique: true},
-    resumeId:{type: Number},
-    positionId:{type:Number},
+    resume: {type:Schema.Types.ObjectId, ref:'resume'},
+    position: {type:Schema.Types.ObjectId, ref:'position'},
     applyTime:{
         type:Date,
         default:Date.now
