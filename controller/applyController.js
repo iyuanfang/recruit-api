@@ -32,9 +32,14 @@ router.delete('/apply/:id',async(ctx)=>{
 router.patch('/apply',async(ctx)=>{    
     var applyJson=ctx.request.body;    
     //update apply
-    const apply=await applyService.updateApply(applyJson);
-    ctx.body='更新成功';
-    console.log('Update apply,id='+apply);
+    try{
+        const apply=await applyService.updateApply(applyJson);
+        ctx.body='更新成功';
+        console.log('Update apply,id='+apply);    
+    }catch(err){
+        ctx.body='更新失败';
+        console.log('更新失败,err:'+err);
+    }  
 })
 
 //保存申请职位

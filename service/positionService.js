@@ -27,5 +27,5 @@ exports.savePosition=function(position){
 
 exports.updatePosition=function(position){
     console.log("update position:"+JSON.stringify(position));
-    return Position.where({_id:position.positionId}).update(position);
+    return Position.where({_id:position._id}).update(position);
 }
