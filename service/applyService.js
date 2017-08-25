@@ -2,11 +2,21 @@ const Apply=require('../model/apply');
 const mongoose=require('mongoose');
 
 exports.getApply=function(query){
-    return Apply.findOne(query).populate('resume').populate('position');
+    return Apply.findOne(query).populate('resume').populate({
+        path:'position',
+        populate:{
+            path:'company'
+        }
+    });
 }
 
 exports.getApplys=function(query){
-    return Apply.find(query).populate('resume').populate('position');
+    return Apply.find(query).populate('resume').populate({
+        path:'position',
+        populate:{
+            path:'company'
+        }
+    });
 }
 
 exports.deleteApply=function(ApplyId){
