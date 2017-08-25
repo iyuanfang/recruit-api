@@ -1,4 +1,5 @@
 const Position=require('../model/position');
+const mongoose=require('mongoose');
 
 exports.getPosition=function(query){
     return Position.findOne(query).populate('company');

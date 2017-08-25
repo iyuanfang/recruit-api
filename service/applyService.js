@@ -1,4 +1,5 @@
-const Position=require('../model/apply');
+const Apply=require('../model/apply');
+const mongoose=require('mongoose');
 
 exports.getApply=function(query){
     return Apply.findOne(query).populate('resume').populate('position');

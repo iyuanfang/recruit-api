@@ -41,13 +41,13 @@ router.patch('/apply',async(ctx)=>{
 router.put('/apply',async(ctx)=>{
     var applyJson=ctx.request.body;    
     //save apply
-    const apply=await applyService.saveApply(applyJson);
-    if(apply!=null){
+    try{
+        const apply=await applyService.saveApply(applyJson);
         ctx.body='创建申请职位成功';
         console.log('Insert apply,  id='+apply);
-    }else{
+    }catch(err){
         ctx.body='申请职位失败';
-        console.log('申请职位失败');
+        console.log('申请职位失败,err:'+err);
     }    
 })
 
