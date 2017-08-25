@@ -3,7 +3,7 @@ const mongoose=require('../common/mongoose');
 const Schema=mongoose.Schema;
 
 const resumeSchema=new Schema({
-    resumeId:{type: Number},
+    user: {type:Schema.Types.ObjectId, ref:'user'}, 
     name:{type:String},
     sex:{type:Number}, //0男，1女
     birthday:{type:String},
