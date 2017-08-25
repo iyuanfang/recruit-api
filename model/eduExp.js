@@ -3,7 +3,7 @@ const mongoose=require('../common/mongoose');
 const Schema=mongoose.Schema;
 
 const eduExpSchema=new Schema({
-    resumeId:{type: Number},
+    resume: {type:Schema.Types.ObjectId, ref:'resume'},
     school:{type:String},
     major:{type:String},
     degree:{type:String},     // 3大专 4本科 5硕士 6博士

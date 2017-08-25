@@ -3,9 +3,9 @@ const userService=require('../service/userService');
 
 //查询单个用户
 router.get('/user/:id',async(ctx)=>{
-    var id=parseInt(ctx.params.id);
+    var id=ctx.params.id;
     console.log('query user id:'+id);
-    var user=await userService.getUser({userId:id});
+    var user=await userService.getUser({_id:id});
     if(user!=null){
         ctx.body=user;
     }else{
@@ -24,7 +24,7 @@ router.get('/users',async(ctx)=>{
 
 //删除用户
 router.delete('/user/:id',async(ctx)=>{
-    var id=parseInt(ctx.params.id);
+    var id=ctx.params.id;
     await userService.deleteUser(id);
     ctx.body='del user id:'+id;
     console.log('Delete user,id=' +id);

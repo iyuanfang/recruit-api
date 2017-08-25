@@ -3,7 +3,6 @@ const mongoose=require('../common/mongoose');
 const Schema=mongoose.Schema;
 
 const userSchema=new Schema({
-    userId:{type: Number, index: {unique: true}},
     name:{type: String, index: {unique: true}},
     password:String
 });

@@ -6,5 +6,6 @@ module.exports = function(app){
     app.use(require('./positionController.js'));
     app.use(require('./companyController.js')); // 记得引用companyController
     app.use(require('./workExpController.js')); 
-    app.use(require('./eduExpController.js')); 
+    app.use(require('./eduExpController.js'));
+    app.use(require('./applyController.js')); 
 }
