@@ -8,7 +8,8 @@ const companySchema= new Schema({
     area:String,
     address:String,
     numEmployee:String,
-    industry:String,
+    numRecruitPos:String,     // 该公司有多少在招岗位
+    profession:String,        // 所在行业
     brief:String,
 });
 
