@@ -6,7 +6,7 @@ const applySchema=new Schema({
     user: {type:Schema.Types.ObjectId, ref:'user'},
     resume: {type:Schema.Types.ObjectId, ref:'resume'}, 
     position: {type:Schema.Types.ObjectId, ref:'position'}, 
-    applyTime:{type:Date}   
+    applyTime:{type:Date,default:Date.now}   
 });
 
 //第三个参数才是指定创建的表名
