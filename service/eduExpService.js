@@ -32,5 +32,5 @@ exports.saveEduExp=function(eduExp){
 
 exports.updateEduExp=function(eduExp){
     console.log("update eduExp:"+JSON.stringify(eduExp));
-    return EduExp.where({_id:eduExp.resumeId}).update(eduExp);
+    return EduExp.where({_id:eduExp._id}).update(eduExp);
 }

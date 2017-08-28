@@ -4,9 +4,13 @@ const companyService=require('../service/companyService');     // ./ 当前目�
 
 //查询单个公司
 router.get('/company/:id',async(ctx)=>{
-    var id= parseInt(ctx.params.id);  // 改为int型Id;
-    //var id= ctx.params.id; 
-    var company=await companyService.getCompany({companyId:id}); 
+    var id= ctx.params.id;   //  parseInt()改为int型Id;
+   
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+        console.log( 'Yes, its a valid ObjectId');
+    }
+    console.log('query position id:'+id);
+    var company=await companyService.getCompany({_id:id}); 
     ctx.response.body=company;
     console.log('Process company');
 
@@ -29,7 +33,7 @@ router.put('/company',async(ctx)=>{
 router.get( '/companys',async(ctx)=>{
     companys=await companyService.getCompanys({}); 
     ctx.response.body=companys;
-    console.log('Process companys');
+    console.log('Process companyS');
 })
 
 

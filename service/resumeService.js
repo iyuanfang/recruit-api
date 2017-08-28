@@ -1,4 +1,5 @@
 const Resume=require('../model/resume');
+const mongoose=require('mongoose');
 
 exports.getResume=function(query){
     var resume=Resume.findOne(query);
@@ -16,14 +17,9 @@ exports.deleteResume=function(ResumeId){
 }
 
 exports.saveResume=function(resume){
-    console.log("save resume:"+JSON.stringify(resume));
-    try{
-        var resume=new Resume(resume).save();
-        return resume;
-    }catch(err){
-        console.log('err:'+err);
-        return null;
-    }
+    var user=new mongoose.Types.ObjectId(resume.user);
+    resume.user=user;
+    return new Resume(resume).save();
 }
 
 exports.updateResume=function(resume){
