@@ -15,9 +15,11 @@ router.get('/user/:id',async(ctx)=>{
 
 //查询用户列表
 router.get('/users',async(ctx)=>{
-    var query=ctx.request.query;
-    var namePattern=new RegExp("^.*"+query.name+".*$");
-    users=await userService.getUsers({name:namePattern});
+    // var query=ctx.request.query;
+    // var namePattern=new RegExp("^.*"+query.name+".*$");
+    // users=await userService.getUsers({name:namePattern});
+
+    users=await userService.getUsers({});
     ctx.body=users;
     console.log('Process users');
 })

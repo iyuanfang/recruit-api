@@ -1,21 +1,38 @@
 const router=require('koa-router')();
 const applyService=require('../service/applyService');
 
-//查询申请职位
+//查询申请职位by applyid
 router.get('/apply/:id',async(ctx)=>{
     var id=ctx.params.id;
     console.log('query apply id:'+id);
     var apply=await applyService.getApply({_id:id});
-    if(apply!=null){
-        ctx.body=apply;
-    }else{
-        ctx.body='没有申请过职位'
-    }    
+    apply=apply!=null?apply:{};
+    console.log('apply:'+JSON.stringify(apply));
+    ctx.body=apply;
 })
 
-//查询申请职位列表
-router.get('/applys',async(ctx)=>{
-    applys=await applyService.getApplys({});
+//查询用户及职位的申请
+router.get('/apply/:resumeId/:positionId',async(ctx)=>{
+    var resumeId=ctx.params.resumeId;
+    var positionId=ctx.params.positionId;
+    var apply=await applyService.getApply({resume:resumeId,position:positionId});
+    apply=apply!=null?apply:{};
+    console.log('apply:'+JSON.stringify(apply));
+    ctx.body=apply;
+})
+
+//查询简历的申请列表
+router.get('/resumeApplys/:resumeId',async(ctx)=>{
+    var resumeId=ctx.params.resumeId;
+    applys=await applyService.getApplys({resume:resumeId});
+    ctx.body=applys;
+    console.log('Process applys');
+})
+
+//查询职位的申请列表
+router.get('/positionApplys/:positionId',async(ctx)=>{
+    var positionId=ctx.params.positionId;
+    applys=await applyService.getApplys({position:positionId});
     ctx.body=applys;
     console.log('Process applys');
 })

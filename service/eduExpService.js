@@ -2,13 +2,13 @@ const EduExp=require('../model/eduExp');
 const mongoose=require('mongoose');   //  
 
 exports.getEduExp=function(query){
-    var eduExp=EduExp.findOne(query).populate('resume');  // position表去引用resume表
+    var eduExp=EduExp.findOne(query);  // position表去引用resume表
     console.log('get resume id:'+eduExp.resumeId);
     return eduExp;
 }
 
 exports.getEduExps=function(query){
-    return EduExp.find(query).populate('resume');
+    return EduExp.find(query);
 }
 
 exports.deleteEduExp=function(resumeId){

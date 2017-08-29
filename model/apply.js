@@ -3,7 +3,6 @@ const mongoose=require('../common/mongoose');
 const Schema=mongoose.Schema;
 
 const applySchema=new Schema({
-    user: {type:Schema.Types.ObjectId, ref:'user'},
     resume: {type:Schema.Types.ObjectId, ref:'resume'}, 
     position: {type:Schema.Types.ObjectId, ref:'position'}, 
     applyTime:{type:Date,default:Date.now}   

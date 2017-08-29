@@ -10,9 +10,9 @@ exports.getWorkExps=function(query){    //使用的find()函数
     return WorkExp.find(query);
 }
 
-exports.deleteWorkExp=function(resumeId){
-    console.log("delete resume id:"+resumeId);
-    return WorkExp.remove({resumeId:resumeId});
+exports.deleteWorkExp=function(workExpId){
+    console.log("delete workExp id:"+workExpId);
+    return WorkExp.remove({_id:workExpId});
 }
 
 exports.saveWorkExp=function(workExp){

@@ -3,7 +3,6 @@ const mongoose=require('mongoose');
 
 exports.getResume=function(query){
     var resume=Resume.findOne(query);
-    console.log('get resume id:'+resume.resumeId);
     return resume;
 }
 
