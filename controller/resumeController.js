@@ -25,18 +25,16 @@ router.get('/resume/:id',async(ctx)=>{
 //查询用户简历
 router.get('/userResume/:userid',async(ctx)=>{
     var userid=ctx.params.userid;
-    var json={resume:'',eduExps:[],workExps:[]};  // 
 
     try{
         var resume=await resumeService.getResume({user:userid});// resume是json对象
         console.log('Get resume:'+resume);
-        json.resume=resume;
 
         if(resume._id!=undefined){
-            await fillEduExps(json,resume._id);
-            await fillWorkExps(json,resume._id);
+            await fillEduExps(resume,resume._id);
+            await fillWorkExps(resume,resume._id);
          }
-        ctx.body=json;
+        ctx.body=resume;
         console.log('Process resume');
     }catch(err){
         ctx.body='failed';
@@ -44,14 +42,14 @@ router.get('/userResume/:userid',async(ctx)=>{
     }
 });
 
-var fillEduExps=async function(json,resumeId){
+var fillEduExps=async function(resume,resumeId){
     var eduExps=await eduExpService.getEduExps({resume:resumeId}); 
-    json.eduExps=eduExps;
+    resume.eduExps=eduExps;
 }
 
-var fillWorkExps=async function(json,resumeId){
+var fillWorkExps=async function(resume,resumeId){
     var workExps=await workExpService.getWorkExps({resume:resumeId});
-    json.workExps=workExps; 
+    resume.workExps=workExps; 
 }
 
 

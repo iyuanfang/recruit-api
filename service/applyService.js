@@ -2,6 +2,7 @@ const Apply=require('../model/apply');
 const mongoose=require('mongoose');
 
 exports.getApply=function(query){
+    console.log("Get apply query:"+JSON.stringify(query));
     return Apply.findOne(query).populate('resume').populate({
         path:'position',
         populate:{
@@ -25,6 +26,7 @@ exports.deleteApply=function(ApplyId){
 }
 
 exports.saveApply=function(apply){
+    console.log("Save apply:"+JSON.stringify(apply));
     var resume=new mongoose.Types.ObjectId(apply.resume);
     apply.resume=resume;
     var position=new mongoose.Types.ObjectId(apply.position);

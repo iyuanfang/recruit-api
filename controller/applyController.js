@@ -16,10 +16,19 @@ router.get('/apply/:resumeId/:positionId',async(ctx)=>{
     var resumeId=ctx.params.resumeId;
     var positionId=ctx.params.positionId;
     var apply=await applyService.getApply({resume:resumeId,position:positionId});
-    apply=apply!=null?apply:{};
-    console.log('apply:'+JSON.stringify(apply));
+    apply=(apply!=null)?apply:{};
+    console.log('get apply:'+JSON.stringify(apply));
     ctx.body=apply;
 })
+
+// router.put('/apply/:resumeId/:positionId',async(ctx)=>{
+//     var resumeId=ctx.params.resumeId;
+//     var positionId=ctx.params.positionId;
+//     var apply=await applyService.saveApply({resume:resumeId,position:positionId});
+//     apply=apply!=null?apply:{};
+//     console.log('save apply:'+JSON.stringify(apply));
+//     ctx.body=apply;
+// })
 
 //查询简历的申请列表
 router.get('/resumeApplys/:resumeId',async(ctx)=>{
@@ -64,6 +73,7 @@ router.put('/apply',async(ctx)=>{
     var applyJson=ctx.request.body;    
     //save apply
     try{
+        console.log('applyJson='+JSON.stringify(applyJson));
         const apply=await applyService.saveApply(applyJson);
         ctx.body='创建申请职位成功';
         console.log('Insert apply,  id='+apply);
