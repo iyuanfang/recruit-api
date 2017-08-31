@@ -21,15 +21,6 @@ router.get('/apply/:resumeId/:positionId',async(ctx)=>{
     ctx.body=apply;
 })
 
-// router.put('/apply/:resumeId/:positionId',async(ctx)=>{
-//     var resumeId=ctx.params.resumeId;
-//     var positionId=ctx.params.positionId;
-//     var apply=await applyService.saveApply({resume:resumeId,position:positionId});
-//     apply=apply!=null?apply:{};
-//     console.log('save apply:'+JSON.stringify(apply));
-//     ctx.body=apply;
-// })
-
 //查询简历的申请列表
 router.get('/resumeApplys/:resumeId',async(ctx)=>{
     var resumeId=ctx.params.resumeId;
